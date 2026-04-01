@@ -52,6 +52,8 @@ app.Configure(config =>
             .WithDescription("Delete an image");
         images.AddCommand<ImagesUrlCommand>("url")
             .WithDescription("Generate CDN URL with transforms");
+        images.AddCommand<ImagesEmbedCommand>("embed")
+            .WithDescription("Generate SEO-optimized HTML embed tag");
         images.AddCommand<ImagesDerivedCommand>("derived")
             .WithDescription("List derived assets");
     });
