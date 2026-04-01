@@ -33,10 +33,18 @@ pixault images list|get|update|delete|url|derived
 pixault folders list|create|delete
 pixault transforms list|get|create|delete
 pixault plugins list|installed|activate|deactivate
+pixault images embed <id>        Generate SEO embed tags
 pixault eps status|split|extract-svg   EPS processing
 ```
 
 Use `pixault --help` or `pixault <command> --help` for details.
+
+### SEO Embed Tags
+
+```bash
+pixault images embed <id> --alt "Description" --widths 400,800,1200
+pixault images embed <id> --alt "Portfolio" -t gallery --no-picture
+```
 
 ## Documentation
 
