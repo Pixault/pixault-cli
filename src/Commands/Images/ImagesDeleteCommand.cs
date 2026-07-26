@@ -21,6 +21,10 @@ public sealed class ImagesDeleteSettings : ProjectSettings
     [Description("Comma-separated original filenames to delete")]
     public string? Files { get; set; }
 
+    [CommandOption("--all")]
+    [Description("Delete ALL images in the project (across every folder; ignores other selectors)")]
+    public bool All { get; set; }
+
     [CommandOption("-s|--search")]
     [Description("Delete images matching this text search (name/filename/id)")]
     public string? Search { get; set; }
@@ -73,7 +77,8 @@ public sealed class ImagesDeleteCommand(ClientFactory factory) : AsyncCommand<Im
             ? null
             : Split(settings.Files).ToHashSet(StringComparer.OrdinalIgnoreCase);
 
-        var useScan = wantFiles is not null
+        var useScan = settings.All
+                   || wantFiles is not null
                    || !string.IsNullOrWhiteSpace(settings.Folder)
                    || !string.IsNullOrWhiteSpace(settings.Search)
                    || !string.IsNullOrWhiteSpace(settings.Category)
@@ -83,16 +88,25 @@ public sealed class ImagesDeleteCommand(ClientFactory factory) : AsyncCommand<Im
         var truncated = false;
         if (useScan)
         {
+            // --all wipes the whole project: no filters (folder=null spans every folder) and no
+            // filename narrowing. Otherwise apply the given selectors.
+            var scanSearch = settings.All ? null : settings.Search;
+            var scanCategory = settings.All ? null : settings.Category;
+            var scanKeyword = settings.All ? null : settings.Keyword;
+            var scanFolder = settings.All ? null : settings.Folder;
+            var scanVideo = settings.All ? (bool?)null : settings.Video;
+            var filterFiles = settings.All ? null : wantFiles;
+
             string? cursor = null;
             var pages = 0;
             do
             {
                 var page = await client.ListImagesAsync(50, cursor, project: settings.Project,
-                    search: settings.Search, category: settings.Category, keyword: settings.Keyword,
-                    folder: settings.Folder, isVideo: settings.Video);
+                    search: scanSearch, category: scanCategory, keyword: scanKeyword,
+                    folder: scanFolder, isVideo: scanVideo);
                 foreach (var i in page.Images)
                 {
-                    if (wantFiles is not null && !wantFiles.Contains(i.OriginalFileName)) continue;
+                    if (filterFiles is not null && !filterFiles.Contains(i.OriginalFileName)) continue;
                     targets[i.ImageId] = i.OriginalFileName;
                 }
                 cursor = page.NextCursor;
