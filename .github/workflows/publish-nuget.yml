@@ -26,7 +26,10 @@ jobs:
           dotnet-quality: 'preview'
 
       - name: Restore
-        run: dotnet restore src/Pixault.Cli.csproj
+        # Restore only from nuget.org in CI. The repo nuget.config also lists a local dev source
+        # (../pixault-dotnet/nupkg) that only exists on a maintainer machine; NuGet errors (NU1301)
+        # on that missing path in CI, which was failing every run. All packages are on nuget.org.
+        run: dotnet restore src/Pixault.Cli.csproj --source https://api.nuget.org/v3/index.json
 
       - name: Build
         run: dotnet build src/Pixault.Cli.csproj -c Release --no-restore
