@@ -44,7 +44,7 @@ public sealed class ImagesListSettings : ProjectSettings
 
 public sealed class ImagesListCommand(ClientFactory factory) : AsyncCommand<ImagesListSettings>
 {
-    public override async Task<int> ExecuteAsync(CommandContext context, ImagesListSettings settings)
+    protected override async Task<int> ExecuteAsync(CommandContext context, ImagesListSettings settings, CancellationToken cancellationToken)
     {
         OutputHelpers.WriteHeader("images list");
 

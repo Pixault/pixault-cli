@@ -15,7 +15,7 @@ public sealed class ImagesGetSettings : ProjectSettings
 
 public sealed class ImagesGetCommand(ClientFactory factory) : AsyncCommand<ImagesGetSettings>
 {
-    public override async Task<int> ExecuteAsync(CommandContext context, ImagesGetSettings settings)
+    protected override async Task<int> ExecuteAsync(CommandContext context, ImagesGetSettings settings, CancellationToken cancellationToken)
     {
         OutputHelpers.WriteHeader("images get");
 

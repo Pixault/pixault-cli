@@ -7,7 +7,7 @@ namespace Pixault.Cli.Commands.Config;
 
 public sealed class ConfigInitCommand(ConfigService configService) : AsyncCommand
 {
-    public override async Task<int> ExecuteAsync(CommandContext context)
+    protected override async Task<int> ExecuteAsync(CommandContext context, CancellationToken cancellationToken)
     {
         AnsiConsole.Write(new FigletText("pixault").Color(Color.DodgerBlue1));
         AnsiConsole.WriteLine();

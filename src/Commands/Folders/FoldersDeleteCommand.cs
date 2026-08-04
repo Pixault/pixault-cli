@@ -19,7 +19,7 @@ public sealed class FoldersDeleteSettings : ProjectSettings
 
 public sealed class FoldersDeleteCommand(ClientFactory factory) : AsyncCommand<FoldersDeleteSettings>
 {
-    public override async Task<int> ExecuteAsync(CommandContext context, FoldersDeleteSettings settings)
+    protected override async Task<int> ExecuteAsync(CommandContext context, FoldersDeleteSettings settings, CancellationToken cancellationToken)
     {
         OutputHelpers.WriteHeader("folders delete");
 

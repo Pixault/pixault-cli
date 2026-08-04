@@ -15,7 +15,7 @@ public sealed class EpsStatusSettings : ProjectSettings
 
 public sealed class EpsStatusCommand(ClientFactory factory) : AsyncCommand<EpsStatusSettings>
 {
-    public override async Task<int> ExecuteAsync(CommandContext context, EpsStatusSettings settings)
+    protected override async Task<int> ExecuteAsync(CommandContext context, EpsStatusSettings settings, CancellationToken cancellationToken)
     {
         OutputHelpers.WriteHeader("eps status");
 

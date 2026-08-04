@@ -19,7 +19,7 @@ public sealed class TransformsDeleteSettings : ProjectSettings
 
 public sealed class TransformsDeleteCommand(ClientFactory factory) : AsyncCommand<TransformsDeleteSettings>
 {
-    public override async Task<int> ExecuteAsync(CommandContext context, TransformsDeleteSettings settings)
+    protected override async Task<int> ExecuteAsync(CommandContext context, TransformsDeleteSettings settings, CancellationToken cancellationToken)
     {
         OutputHelpers.WriteHeader("transforms delete");
 

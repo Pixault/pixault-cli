@@ -49,7 +49,7 @@ public sealed class ImagesEmbedSettings : ProjectSettings
 
 public sealed class ImagesEmbedCommand(ClientFactory factory) : Command<ImagesEmbedSettings>
 {
-    public override int Execute(CommandContext context, ImagesEmbedSettings settings)
+    protected override int Execute(CommandContext context, ImagesEmbedSettings settings, CancellationToken cancellationToken)
     {
         OutputHelpers.WriteHeader("images embed");
 

@@ -15,7 +15,7 @@ public sealed class ImagesDerivedSettings : ProjectSettings
 
 public sealed class ImagesDerivedCommand(ClientFactory factory) : AsyncCommand<ImagesDerivedSettings>
 {
-    public override async Task<int> ExecuteAsync(CommandContext context, ImagesDerivedSettings settings)
+    protected override async Task<int> ExecuteAsync(CommandContext context, ImagesDerivedSettings settings, CancellationToken cancellationToken)
     {
         OutputHelpers.WriteHeader("images derived");
 

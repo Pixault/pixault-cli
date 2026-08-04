@@ -7,7 +7,7 @@ namespace Pixault.Cli.Commands.Config;
 
 public sealed class ConfigShowCommand(ConfigService configService) : Command
 {
-    public override int Execute(CommandContext context)
+    protected override int Execute(CommandContext context, CancellationToken cancellationToken)
     {
         OutputHelpers.WriteHeader("config show");
 

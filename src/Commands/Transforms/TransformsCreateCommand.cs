@@ -51,7 +51,7 @@ public sealed class TransformsCreateSettings : ProjectSettings
 
 public sealed class TransformsCreateCommand(ClientFactory factory) : AsyncCommand<TransformsCreateSettings>
 {
-    public override async Task<int> ExecuteAsync(CommandContext context, TransformsCreateSettings settings)
+    protected override async Task<int> ExecuteAsync(CommandContext context, TransformsCreateSettings settings, CancellationToken cancellationToken)
     {
         OutputHelpers.WriteHeader("transforms create");
 

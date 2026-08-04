@@ -44,7 +44,7 @@ public sealed class ImagesUrlSettings : ProjectSettings
 
 public sealed class ImagesUrlCommand(ClientFactory factory) : Command<ImagesUrlSettings>
 {
-    public override int Execute(CommandContext context, ImagesUrlSettings settings)
+    protected override int Execute(CommandContext context, ImagesUrlSettings settings, CancellationToken cancellationToken)
     {
         OutputHelpers.WriteHeader("images url");
 

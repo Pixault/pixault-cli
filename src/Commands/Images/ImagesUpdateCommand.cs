@@ -44,7 +44,7 @@ public sealed class ImagesUpdateSettings : ProjectSettings
 
 public sealed class ImagesUpdateCommand(ClientFactory factory) : AsyncCommand<ImagesUpdateSettings>
 {
-    public override async Task<int> ExecuteAsync(CommandContext context, ImagesUpdateSettings settings)
+    protected override async Task<int> ExecuteAsync(CommandContext context, ImagesUpdateSettings settings, CancellationToken cancellationToken)
     {
         OutputHelpers.WriteHeader("images update");
 

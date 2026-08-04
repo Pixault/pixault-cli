@@ -7,7 +7,7 @@ namespace Pixault.Cli.Commands.Plugins;
 
 public sealed class PluginsListCommand(ClientFactory factory) : AsyncCommand
 {
-    public override async Task<int> ExecuteAsync(CommandContext context)
+    protected override async Task<int> ExecuteAsync(CommandContext context, CancellationToken cancellationToken)
     {
         OutputHelpers.WriteHeader("plugins list");
 

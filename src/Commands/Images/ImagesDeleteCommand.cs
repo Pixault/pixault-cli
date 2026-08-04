@@ -60,7 +60,7 @@ public sealed class ImagesDeleteSettings : ProjectSettings
 
 public sealed class ImagesDeleteCommand(ClientFactory factory) : AsyncCommand<ImagesDeleteSettings>
 {
-    public override async Task<int> ExecuteAsync(CommandContext context, ImagesDeleteSettings settings)
+    protected override async Task<int> ExecuteAsync(CommandContext context, ImagesDeleteSettings settings, CancellationToken cancellationToken)
     {
         OutputHelpers.WriteHeader("images delete");
         var client = factory.CreateAdminClient(settings.Project);

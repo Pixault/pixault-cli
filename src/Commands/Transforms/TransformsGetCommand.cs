@@ -15,7 +15,7 @@ public sealed class TransformsGetSettings : ProjectSettings
 
 public sealed class TransformsGetCommand(ClientFactory factory) : AsyncCommand<TransformsGetSettings>
 {
-    public override async Task<int> ExecuteAsync(CommandContext context, TransformsGetSettings settings)
+    protected override async Task<int> ExecuteAsync(CommandContext context, TransformsGetSettings settings, CancellationToken cancellationToken)
     {
         OutputHelpers.WriteHeader("transforms get");
 

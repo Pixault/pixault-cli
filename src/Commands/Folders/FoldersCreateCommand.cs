@@ -14,7 +14,7 @@ public sealed class FoldersCreateSettings : ProjectSettings
 
 public sealed class FoldersCreateCommand(ClientFactory factory) : AsyncCommand<FoldersCreateSettings>
 {
-    public override async Task<int> ExecuteAsync(CommandContext context, FoldersCreateSettings settings)
+    protected override async Task<int> ExecuteAsync(CommandContext context, FoldersCreateSettings settings, CancellationToken cancellationToken)
     {
         OutputHelpers.WriteHeader("folders create");
 

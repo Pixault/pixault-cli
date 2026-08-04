@@ -39,7 +39,7 @@ public sealed class UploadCommand(ClientFactory factory) : AsyncCommand<UploadSe
         [".mov"] = "video/quicktime"
     };
 
-    public override async Task<int> ExecuteAsync(CommandContext context, UploadSettings settings)
+    protected override async Task<int> ExecuteAsync(CommandContext context, UploadSettings settings, CancellationToken cancellationToken)
     {
         OutputHelpers.WriteHeader("upload");
 

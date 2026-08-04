@@ -14,7 +14,7 @@ public sealed class PluginsActivateSettings : ProjectSettings
 
 public sealed class PluginsActivateCommand(ClientFactory factory) : AsyncCommand<PluginsActivateSettings>
 {
-    public override async Task<int> ExecuteAsync(CommandContext context, PluginsActivateSettings settings)
+    protected override async Task<int> ExecuteAsync(CommandContext context, PluginsActivateSettings settings, CancellationToken cancellationToken)
     {
         OutputHelpers.WriteHeader("plugins activate");
 

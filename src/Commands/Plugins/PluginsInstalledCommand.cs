@@ -7,7 +7,7 @@ namespace Pixault.Cli.Commands.Plugins;
 
 public sealed class PluginsInstalledCommand(ClientFactory factory) : AsyncCommand<ProjectSettings>
 {
-    public override async Task<int> ExecuteAsync(CommandContext context, ProjectSettings settings)
+    protected override async Task<int> ExecuteAsync(CommandContext context, ProjectSettings settings, CancellationToken cancellationToken)
     {
         OutputHelpers.WriteHeader("plugins installed");
 

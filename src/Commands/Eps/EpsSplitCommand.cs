@@ -15,7 +15,7 @@ public sealed class EpsSplitSettings : ProjectSettings
 
 public sealed class EpsSplitCommand(ClientFactory factory) : AsyncCommand<EpsSplitSettings>
 {
-    public override async Task<int> ExecuteAsync(CommandContext context, EpsSplitSettings settings)
+    protected override async Task<int> ExecuteAsync(CommandContext context, EpsSplitSettings settings, CancellationToken cancellationToken)
     {
         OutputHelpers.WriteHeader("eps split");
 

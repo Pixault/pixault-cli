@@ -15,7 +15,7 @@ public sealed class EpsExtractSvgSettings : ProjectSettings
 
 public sealed class EpsExtractSvgCommand(ClientFactory factory) : AsyncCommand<EpsExtractSvgSettings>
 {
-    public override async Task<int> ExecuteAsync(CommandContext context, EpsExtractSvgSettings settings)
+    protected override async Task<int> ExecuteAsync(CommandContext context, EpsExtractSvgSettings settings, CancellationToken cancellationToken)
     {
         OutputHelpers.WriteHeader("eps extract-svg");
 
